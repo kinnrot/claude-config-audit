@@ -1,0 +1,20 @@
+{
+  "name": "claude-security-audit",
+  "version": "1.0.0",
+  "description": "Security audit plugin for Claude Code — scans configuration files for misconfigurations, unsafe settings, and potential data leaks. Warns on session start if HIGH severity issues are found.",
+  "keywords": ["security", "audit", "config", "safety", "permissions", "hooks"],
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "description": "Scan ~/.claude/ config on every session start. Injects a warning if HIGH severity issues are found. Silent otherwise.",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/session_audit_hook.py"
+          }
+        ]
+      }
+    ]
+  }
+}
