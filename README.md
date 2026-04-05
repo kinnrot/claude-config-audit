@@ -1,4 +1,4 @@
-# claude-security-audit
+# claude-config-audit
 
 A Claude Code plugin that audits your `~/.claude/` configuration for security misconfigurations and potential data leaks.
 
@@ -21,52 +21,49 @@ A Claude Code plugin that audits your `~/.claude/` configuration for security mi
 
 ## Installation
 
-### Via Claude Code plugin marketplace
-
-Add to your `~/.claude/settings.json`:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "claude-security-audit": {
-      "source": {
-        "source": "github",
-        "repo": "kinnrot/claude-security-audit",
-        "ref": "<commit-sha>"
-      }
-    }
-  }
-}
-```
-
-Then install the plugin through Claude Code.
-
-### Manual
+### 1. Clone the repo
 
 ```bash
-git clone https://github.com/kinnrot/claude-security-audit ~/.claude/plugins/cache/claude-security-audit
+git clone https://github.com/kinnrot/claude-config-audit ~/.claude/plugins/cache/claude-config-audit
 ```
 
-Add to `~/.claude/settings.json`:
+### 2. Register in `~/.claude/settings.json`
 
 ```json
 {
   "extraKnownMarketplaces": {
-    "claude-security-audit": {
+    "claude-config-audit": {
       "source": {
         "source": "directory",
-        "path": "/Users/<you>/.claude/plugins/cache/claude-security-audit"
+        "path": "/Users/<your-username>/.claude/plugins/cache/claude-config-audit"
       }
     }
   }
 }
 ```
+
+### 3. Install and reload
+
+Inside Claude Code:
+
+```
+/plugin install claude-config-audit@claude-config-audit
+/reload-plugins
+```
+
+### Updating
+
+```bash
+cd ~/.claude/plugins/cache/claude-config-audit && git pull
+```
+
+Then `/reload-plugins` in Claude Code.
 
 ## Usage
 
-The SessionStart hook runs automatically — no action needed.
+The SessionStart hook runs automatically — no action needed after install.
 
-For a manual full audit, type `/audit` in any Claude Code session.
+For a manual full audit at any time, type `/audit` in any Claude Code session.
 
 ## Design principles
 
